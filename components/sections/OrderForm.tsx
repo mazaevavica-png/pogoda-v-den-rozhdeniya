@@ -13,7 +13,6 @@ const INITIAL_FORM_DATA: OrderFormData = {
   city: '',
   occasion: '',
   comment: '',
-  format: 'print',
 }
 
 const OCCASIONS = [
@@ -98,8 +97,14 @@ export default function OrderForm() {
           </h2>
           <OrnamentDivider className="max-w-xs mx-auto" />
           <p className="text-sm mt-5 max-w-lg mx-auto" style={{ color: '#4A4438', fontFamily: 'Georgia, serif' }}>
-            Заполните форму с датой и городом — мы вручную найдём архивные данные
-            и подготовим ваш сертификат. Оплата после согласования деталей.
+            Заполните форму с датой и городом — мы вручную найдём архивные данные,
+            создадим персональный сертификат и отправим его в рамке. Оплата после согласования деталей.
+          </p>
+          <p
+            className="text-sm mt-3 font-medium"
+            style={{ color: '#7A5E16', fontFamily: 'Georgia, serif' }}
+          >
+            Сертификат в рамке — 5 990 ₽
           </p>
         </div>
 
@@ -196,47 +201,6 @@ export default function OrderForm() {
                 </div>
               </div>
 
-              {/* Format selector */}
-              <div>
-                <label className="block text-[10px] tracking-archive uppercase mb-2" style={labelStyle}>
-                  Формат сертификата *
-                </label>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { value: 'print', label: 'PDF для печати', price: '1 000 ₽' },
-                    { value: 'framed', label: 'Печать в рамке', price: '5 000 ₽' },
-                  ].map((opt) => (
-                    <label
-                      key={opt.value}
-                      className="flex flex-col gap-1 p-3 cursor-pointer rounded-sm transition-all duration-200"
-                      style={{
-                        background: formData.format === opt.value
-                          ? 'rgba(184,146,42,0.12)'
-                          : 'transparent',
-                        border: formData.format === opt.value
-                          ? '1.5px solid rgba(184,146,42,0.6)'
-                          : '1px solid rgba(184,146,42,0.25)',
-                      }}
-                    >
-                      <input
-                        type="radio"
-                        name="format"
-                        value={opt.value}
-                        checked={formData.format === opt.value}
-                        onChange={handleChange}
-                        className="sr-only"
-                      />
-                      <span className="text-sm font-medium" style={{ color: '#1C1810', fontFamily: 'Georgia, serif' }}>
-                        {opt.label}
-                      </span>
-                      <span className="text-lg font-bold" style={{ color: '#B8922A', fontFamily: 'Georgia, serif' }}>
-                        {opt.price}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
               {/* Occasion */}
               <div>
                 <label htmlFor="occasion" className="block text-[10px] tracking-archive uppercase mb-1.5" style={labelStyle}>
@@ -328,7 +292,7 @@ export default function OrderForm() {
                   'Акварельная иллюстрация города',
                   'Архивный дизайн и орнаменты',
                   'Поэтическое завершение',
-                  'PDF 300 dpi · формат A3',
+                  'Печать, рамка и подарочная упаковка',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2.5">
                     <svg className="flex-shrink-0 mt-0.5" width="13" height="13" viewBox="0 0 13 13" fill="none">
@@ -378,7 +342,7 @@ export default function OrderForm() {
             <div className="flex flex-col gap-2">
               {[
                 '🔒 Безопасная оплата · Сбербанк / ЮKassa',
-                '📧 Готовый файл отправляем на email после подготовки',
+                '📦 Производство и доставка: обычно 3–7 дней',
                 '↩ Возврат в течение 14 дней',
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-2">

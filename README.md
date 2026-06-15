@@ -42,7 +42,7 @@ pogoda/
 │   │   ├── PreviewGate.tsx  # S2 — Blurred certificate preview (Zeigarnik hook)
 │   │   ├── AboutProduct.tsx # S3 — Product pillars + archive authority
 │   │   ├── CertificateGallery.tsx  # S4 — Example certificates by season/city
-│   │   ├── Pricing.tsx      # S5 — PDF (1000₽) + Framed (5000₽) tiers
+│   │   ├── Pricing.tsx      # S5 — Framed certificate (5990₽)
 │   │   ├── SocialProof.tsx  # S6 — Stats, counter, media mentions
 │   │   ├── CertificateAnatomy.tsx  # S7 — Annotated certificate breakdown
 │   │   ├── OrderForm.tsx    # S8 — Full order form with all fields
@@ -101,17 +101,15 @@ This creates the Zeigarnik effect (loss aversion) which drives conversion to the
 - **Email** — required
 - **Date of birth** — required (min: 1936-01-01)
 - **City** — required (dropdown, 50 Russian cities)
-- **Format** — required (PDF 1000₽ / Framed 5000₽)
 - **Occasion** — optional (birthday, anniversary, newborn, etc.)
 - **Comment** — optional (free text)
 
 ---
 
 ## Pricing
-| Format | Price | Delivery |
+| Product | Price | Delivery |
 |---|---|---|
-| PDF (ready to print, A3, 300dpi) | 1 000 ₽ | Email, 1–2 business days |
-| Printed + framed (archival paper, wooden frame) | 5 000 ₽ | СДЭК, 3–7 business days |
+| Framed printed certificate (wooden frame, gift packaging) | 5 990 ₽ | Production and shipping: usually 3–7 days |
 
 ---
 

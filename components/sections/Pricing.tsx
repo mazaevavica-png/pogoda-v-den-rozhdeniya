@@ -26,19 +26,20 @@ export default function Pricing() {
         {/* Header */}
         <div className="text-center mb-14">
           <p className="text-xs tracking-widest uppercase mb-3" style={{ color: '#D4A843', fontFamily: 'Georgia, serif' }}>
-            Форматы и цены
+            Стоимость
           </p>
           <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#FAF6E8', fontFamily: 'Georgia, serif' }}>
-            Выберите свой формат
+            Сертификат в рамке
           </h2>
           <OrnamentDivider color="gold" className="max-w-xs mx-auto" />
           <p className="text-sm leading-relaxed mt-5 max-w-lg mx-auto" style={{ color: '#D8D4C8', fontFamily: 'Georgia, serif' }}>
-            Оба варианта содержат одинаковый сертификат. Разница — в том, как он живёт в вашем мире.
+            Памятный подарок и семейная реликвия — персональный сертификат о погоде в важный день,
+            напечатанный и оформленный в рамку.
           </p>
         </div>
 
         {/* Pricing cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 gap-6 max-w-md mx-auto">
           {PRICING_TIERS.map((tier) => (
             <div
               key={tier.id}
@@ -182,7 +183,7 @@ export default function Pricing() {
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 mt-10">
           {[
             '🔒 Безопасная оплата',
-            '⚡ Мгновенная доставка PDF',
+            '📦 Производство и доставка: обычно 3–7 дней',
             '↩ Возврат в течение 14 дней',
             '📞 Поддержка 7 дней в неделю',
           ].map((g, i) => (

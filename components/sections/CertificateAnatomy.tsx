@@ -91,10 +91,10 @@ export default function CertificateAnatomy() {
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { value: 'A3', label: 'Формат печати' },
-              { value: '300 dpi', label: 'Разрешение PDF' },
-              { value: '300 г/м²', label: 'Архивная бумага' },
-              { value: 'RGB + CMYK', label: 'Цветовые профили' },
+              { value: 'A3', label: 'Формат сертификата' },
+              { value: 'Рамка', label: 'Деревянное обрамление' },
+              { value: '3–7 дней', label: 'Производство и доставка' },
+              { value: 'Подарок', label: 'Упаковка и открытка' },
             ].map((spec, i) => (
               <div key={i} className="text-center">
                 <div className="text-xl font-bold mb-1" style={{ color: '#1C1810', fontFamily: 'Georgia, serif' }}>

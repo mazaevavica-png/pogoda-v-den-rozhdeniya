@@ -50,7 +50,6 @@ export interface OrderFormData {
   city: string
   occasion: string
   comment: string
-  format: string
 }
 
 export interface OrderProcessStep {

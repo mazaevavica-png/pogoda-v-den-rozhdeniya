@@ -29,7 +29,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-sm leading-relaxed mb-5 max-w-xs" style={{ color: '#787060', fontFamily: 'Georgia, serif' }}>
-              Персональные метеосертификаты из исторических архивов. Уникальный документ
+              Персональные метеосертификаты в рамке из исторических архивов. Памятный подарок
               о погоде в самый важный день вашей жизни.
             </p>
             <div className="flex items-center gap-4">
