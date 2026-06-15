@@ -3,29 +3,6 @@
 import OrnamentDivider from '../ui/OrnamentDivider'
 
 export default function AboutProduct() {
-  const pillars = [
-    {
-      icon: '📜',
-      title: 'Исторически достоверно',
-      text: 'В основе каждого сертификата — архивные метеорологические данные. Мы работаем с реальными историческими наблюдениями, а не с реконструкциями или приблизительными оценками.',
-    },
-    {
-      icon: '✍',
-      title: 'Авторский нарратив',
-      text: 'Каждый сертификат сопровождается художественным описанием дня, основанным на архивных погодных данных. Цифры превращаются в историю, которую интересно читать спустя годы.',
-    },
-    {
-      icon: '🎨',
-      title: 'Иллюстрация города',
-      text: 'Сертификат дополняется атмосферной иллюстрацией, отражающей характер места, сезона и настроения дня, в который началась ваша история.',
-    },
-    {
-      icon: '🎁',
-      title: 'Подарок без аналогов',
-      text: 'Сертификат в рамке — подарок без аналогов. Он создаётся для одного человека и одного важного дня, чтобы сохранить память о моменте, с которого началась история.',
-    },
-  ]
-
   const dataSources = [
     {
       icon: '📅',
@@ -81,42 +58,6 @@ export default function AboutProduct() {
             Мы превращаем исторические данные в персональный сертификат, который помогает
             взглянуть на день рождения как на часть большой истории.
           </p>
-        </div>
-
-        {/* Pillars */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {pillars.map((pillar, i) => (
-            <div
-              key={i}
-              className="relative p-6 rounded-sm group hover:shadow-certificate transition-all duration-500"
-              style={{
-                background: 'linear-gradient(145deg, rgba(250,246,232,0.9), rgba(237,224,190,0.5))',
-                border: '1px solid rgba(184,146,42,0.2)',
-              }}
-            >
-              {/* Corner accents */}
-              <svg className="absolute top-0 left-0 w-5 h-5" viewBox="0 0 20 20" fill="none">
-                <path d="M1 10V1H10" stroke="#B8922A" strokeWidth="1" strokeLinecap="round" opacity="0.4" />
-              </svg>
-              <svg className="absolute bottom-0 right-0 w-5 h-5 rotate-180" viewBox="0 0 20 20" fill="none">
-                <path d="M1 10V1H10" stroke="#B8922A" strokeWidth="1" strokeLinecap="round" opacity="0.4" />
-              </svg>
-
-              <div className="text-3xl mb-4">{pillar.icon}</div>
-              <h3
-                className="text-base font-bold mb-2"
-                style={{ color: '#1C1810', fontFamily: 'Georgia, serif' }}
-              >
-                {pillar.title}
-              </h3>
-              <p
-                className="text-sm leading-relaxed"
-                style={{ color: '#4A4438', fontFamily: 'Georgia, serif' }}
-              >
-                {pillar.text}
-              </p>
-            </div>
-          ))}
         </div>
 
         {/* Archive authority */}

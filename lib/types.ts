@@ -49,7 +49,13 @@ export interface OrderFormData {
   date: string
   city: string
   occasion: string
+  customOccasion: string
   comment: string
+}
+
+export interface OrderFormPrefill {
+  city: string
+  date: string
 }
 
 export interface OrderProcessStep {

@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import OrnamentDivider from '../ui/OrnamentDivider'
 import OrderSuccessModal from '../ui/OrderSuccessModal'
-import { ORDER_PROCESS_STEPS } from '@/lib/constants'
-import type { OrderFormData } from '@/lib/types'
+import { CERTIFICATE_CATEGORIES, CUSTOM_OCCASION, ORDER_PROCESS_STEPS } from '@/lib/constants'
+import type { OrderFormData, OrderFormPrefill } from '@/lib/types'
 
 const INITIAL_FORM_DATA: OrderFormData = {
   name: '',
@@ -12,29 +12,47 @@ const INITIAL_FORM_DATA: OrderFormData = {
   date: '',
   city: '',
   occasion: '',
+  customOccasion: '',
   comment: '',
 }
 
-const OCCASIONS = [
-  'День рождения','Юбилей (50, 60, 70 лет)','Рождение ребёнка',
-  'Годовщина свадьбы','День первой встречи','Переезд в город',
-  'Корпоративный подарок','Другой особый день',
-]
+interface OrderFormProps {
+  prefill?: OrderFormPrefill
+}
 
-export default function OrderForm() {
+export default function OrderForm({ prefill }: OrderFormProps) {
   const [formData, setFormData] = useState<OrderFormData>(INITIAL_FORM_DATA)
   const [successModalOpen, setSuccessModalOpen] = useState(false)
   const [submittedName, setSubmittedName] = useState('')
   const [loading, setLoading] = useState(false)
 
+  useEffect(() => {
+    if (!prefill?.city && !prefill?.date) return
+
+    setFormData((prev) => ({
+      ...prev,
+      city: prefill.city || prev.city,
+      date: prefill.date || prev.date,
+    }))
+  }, [prefill])
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    const { name, value } = e.target
+    setFormData((prev) => {
+      if (name === 'occasion' && value !== CUSTOM_OCCASION) {
+        return { ...prev, occasion: value, customOccasion: '' }
+      }
+      return { ...prev, [name]: value }
+    })
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (formData.occasion === CUSTOM_OCCASION && !formData.customOccasion.trim()) {
+      return
+    }
     setLoading(true)
     await new Promise((r) => setTimeout(r, 1800))
     setLoading(false)
@@ -201,10 +219,10 @@ export default function OrderForm() {
                 </div>
               </div>
 
-              {/* Occasion */}
+              {/* Category */}
               <div>
                 <label htmlFor="occasion" className="block text-[10px] tracking-archive uppercase mb-1.5" style={labelStyle}>
-                  Особый случай <span style={{ color: '#8B6948' }}>(необязательно)</span>
+                  Выберите категорию сертификата
                 </label>
                 <select
                   id="occasion"
@@ -214,12 +232,31 @@ export default function OrderForm() {
                   className="w-full h-11 px-3 text-sm appearance-none cursor-pointer"
                   style={inputStyle}
                 >
-                  <option value="">Выберите повод...</option>
-                  {OCCASIONS.map((o) => (
-                    <option key={o} value={o}>{o}</option>
+                  <option value="">Выберите категорию...</option>
+                  {CERTIFICATE_CATEGORIES.map((category) => (
+                    <option key={category} value={category}>{category}</option>
                   ))}
                 </select>
               </div>
+
+              {formData.occasion === CUSTOM_OCCASION && (
+                <div>
+                  <label htmlFor="customOccasion" className="block text-[10px] tracking-archive uppercase mb-1.5" style={labelStyle}>
+                    Свой вариант *
+                  </label>
+                  <input
+                    id="customOccasion"
+                    name="customOccasion"
+                    type="text"
+                    value={formData.customOccasion}
+                    onChange={handleChange}
+                    placeholder="Опишите повод для сертификата"
+                    required
+                    className="w-full h-11 px-3 text-sm transition-all duration-200 focus:ring-1 focus:ring-gold-500"
+                    style={inputStyle}
+                  />
+                </div>
+              )}
 
               {/* Comment */}
               <div>
@@ -331,7 +368,9 @@ export default function OrderForm() {
                     </div>
                     <div>
                       <p className="text-sm font-medium" style={{ color: '#1C1810', fontFamily: 'Georgia, serif' }}>{step.title}</p>
-                      <p className="text-xs" style={{ color: '#7A5E16', fontFamily: 'Georgia, serif' }}>{step.desc}</p>
+                      {step.desc ? (
+                        <p className="text-xs" style={{ color: '#7A5E16', fontFamily: 'Georgia, serif' }}>{step.desc}</p>
+                      ) : null}
                     </div>
                   </li>
                 ))}

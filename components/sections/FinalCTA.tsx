@@ -3,13 +3,20 @@
 import { useState } from 'react'
 import OrnamentDivider from '../ui/OrnamentDivider'
 
-export default function FinalCTA() {
+interface FinalCTAProps {
+  onPreview?: (city: string, date: string) => void
+}
+
+export default function FinalCTA({ onPreview }: FinalCTAProps) {
   const [city, setCity] = useState('')
   const [date, setDate] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    document.getElementById('order')?.scrollIntoView({ behavior: 'smooth' })
+    if (city && date) {
+      onPreview?.(city, date)
+      document.getElementById('order')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
   }
 
   return (

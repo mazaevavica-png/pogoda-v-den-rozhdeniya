@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Navigation from '@/components/ui/Navigation'
 import Hero from '@/components/sections/Hero'
 import AboutProduct from '@/components/sections/AboutProduct'
@@ -12,14 +13,21 @@ import Testimonials from '@/components/sections/Testimonials'
 import FAQ from '@/components/sections/FAQ'
 import FinalCTA from '@/components/sections/FinalCTA'
 import Footer from '@/components/sections/Footer'
+import type { OrderFormPrefill } from '@/lib/types'
 
 export default function Home() {
+  const [orderPrefill, setOrderPrefill] = useState<OrderFormPrefill>({ city: '', date: '' })
+
+  const handleOrderPrefill = (city: string, date: string) => {
+    setOrderPrefill({ city, date })
+  }
+
   return (
     <main>
       <Navigation />
 
       {/* 1. Hero */}
-      <Hero />
+      <Hero onPreview={handleOrderPrefill} />
 
       {/* 2. About the product */}
       <AboutProduct />
@@ -37,7 +45,7 @@ export default function Home() {
       <CertificateAnatomy />
 
       {/* 8. Order form */}
-      <OrderForm />
+      <OrderForm prefill={orderPrefill} />
 
       {/* 9. Testimonials */}
       <Testimonials />
@@ -46,7 +54,7 @@ export default function Home() {
       <FAQ />
 
       {/* 11. Final CTA */}
-      <FinalCTA />
+      <FinalCTA onPreview={handleOrderPrefill} />
 
       {/* 12. Footer */}
       <Footer />
