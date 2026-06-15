@@ -4,11 +4,13 @@ import { useEffect, useState } from 'react'
 import OrnamentDivider from '../ui/OrnamentDivider'
 import OrderSuccessModal from '../ui/OrderSuccessModal'
 import { CERTIFICATE_CATEGORIES, CUSTOM_OCCASION, ORDER_PROCESS_STEPS } from '@/lib/constants'
+import { openTelegramOrderChat } from '@/lib/telegram'
 import type { OrderFormData, OrderFormPrefill } from '@/lib/types'
 
 const INITIAL_FORM_DATA: OrderFormData = {
   name: '',
   email: '',
+  phone: '',
   date: '',
   city: '',
   occasion: '',
@@ -24,7 +26,6 @@ export default function OrderForm({ prefill }: OrderFormProps) {
   const [formData, setFormData] = useState<OrderFormData>(INITIAL_FORM_DATA)
   const [successModalOpen, setSuccessModalOpen] = useState(false)
   const [submittedName, setSubmittedName] = useState('')
-  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (!prefill?.city && !prefill?.date) return
@@ -48,14 +49,13 @@ export default function OrderForm({ prefill }: OrderFormProps) {
     })
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (formData.occasion === CUSTOM_OCCASION && !formData.customOccasion.trim()) {
       return
     }
-    setLoading(true)
-    await new Promise((r) => setTimeout(r, 1800))
-    setLoading(false)
+
+    openTelegramOrderChat(formData)
     setSubmittedName(formData.name)
     setSuccessModalOpen(true)
   }
@@ -182,6 +182,22 @@ export default function OrderForm({ prefill }: OrderFormProps) {
                 </div>
               </div>
 
+              <div>
+                <label htmlFor="phone" className="block text-[10px] tracking-archive uppercase mb-1.5" style={labelStyle}>
+                  Телефон <span style={{ color: '#8B6948' }}>(необязательно)</span>
+                </label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="+7 (999) 123-45-67"
+                  className="w-full h-11 px-3 text-sm transition-all duration-200 focus:ring-1 focus:ring-gold-500"
+                  style={inputStyle}
+                />
+              </div>
+
               {/* Date + City */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
@@ -278,25 +294,14 @@ export default function OrderForm({ prefill }: OrderFormProps) {
               {/* Submit */}
               <button
                 type="submit"
-                disabled={loading}
-                className="w-full h-13 py-3.5 text-sm tracking-archive uppercase transition-all duration-300 hover:brightness-105 hover:shadow-gold-glow disabled:opacity-60 disabled:cursor-not-allowed rounded-sm"
+                className="w-full h-13 py-3.5 text-sm tracking-archive uppercase transition-all duration-300 hover:brightness-105 hover:shadow-gold-glow rounded-sm"
                 style={{
                   background: 'linear-gradient(135deg, #D4A843 0%, #B8922A 50%, #D4A843 100%)',
                   color: '#FAF6E8',
                   fontFamily: 'Georgia, serif',
                 }}
               >
-                {loading ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-                    </svg>
-                    Отправляем заявку...
-                  </span>
-                ) : (
-                  'Оформить заказ →'
-                )}
+                Оформить заказ →
               </button>
 
               <p className="text-xs text-center" style={{ color: '#8B6948', fontFamily: 'Georgia, serif' }}>

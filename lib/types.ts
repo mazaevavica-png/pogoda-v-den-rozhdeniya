@@ -46,6 +46,7 @@ export interface GalleryItem {
 export interface OrderFormData {
   name: string
   email: string
+  phone: string
   date: string
   city: string
   occasion: string
