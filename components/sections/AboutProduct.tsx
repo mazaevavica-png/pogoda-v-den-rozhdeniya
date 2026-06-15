@@ -1,6 +1,7 @@
 'use client'
 
 import OrnamentDivider from '../ui/OrnamentDivider'
+import { APPROACH_PILLARS } from '@/lib/constants'
 
 export default function AboutProduct() {
   const dataSources = [
@@ -28,7 +29,7 @@ export default function AboutProduct() {
       style={{ background: 'linear-gradient(180deg, #FAF6E8 0%, #F5EDD4 100%)' }}
     >
       <div className="max-w-6xl mx-auto px-5 md:px-8">
-        {/* Section header */}
+        {/* 1. About Project — intro */}
         <div className="text-center mb-16">
           <p
             className="text-xs tracking-widest uppercase mb-4"
@@ -60,7 +61,54 @@ export default function AboutProduct() {
           </p>
         </div>
 
-        {/* Archive authority */}
+        {/* 2. Our Approach — feature list */}
+        <div id="approach" className="mb-16">
+          <div className="text-center mb-12">
+            <p
+              className="text-xs tracking-widest uppercase mb-3"
+              style={{ color: '#B8922A', fontFamily: 'Georgia, serif' }}
+            >
+              Наш подход
+            </p>
+            <OrnamentDivider className="max-w-xs mx-auto" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {APPROACH_PILLARS.map((pillar, i) => (
+              <div
+                key={i}
+                className="relative p-6 rounded-sm group hover:shadow-certificate transition-all duration-500"
+                style={{
+                  background: 'linear-gradient(145deg, rgba(250,246,232,0.92), rgba(237,224,190,0.55))',
+                  border: '1px solid rgba(184,146,42,0.22)',
+                }}
+              >
+                <svg className="absolute top-0 left-0 w-5 h-5" viewBox="0 0 20 20" fill="none">
+                  <path d="M1 10V1H10" stroke="#B8922A" strokeWidth="1" strokeLinecap="round" opacity="0.4" />
+                </svg>
+                <svg className="absolute bottom-0 right-0 w-5 h-5 rotate-180" viewBox="0 0 20 20" fill="none">
+                  <path d="M1 10V1H10" stroke="#B8922A" strokeWidth="1" strokeLinecap="round" opacity="0.4" />
+                </svg>
+
+                <div className="text-3xl mb-4">{pillar.icon}</div>
+                <h3
+                  className="text-base font-bold mb-2"
+                  style={{ color: '#1C1810', fontFamily: 'Georgia, serif' }}
+                >
+                  {pillar.title}
+                </h3>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ color: '#4A4438', fontFamily: 'Georgia, serif' }}
+                >
+                  {pillar.text}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 3. Data Sources */}
         <div
           className="relative p-8 md:p-10 rounded-sm text-center"
           style={{

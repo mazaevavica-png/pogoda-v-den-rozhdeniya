@@ -6,7 +6,6 @@ import Hero from '@/components/sections/Hero'
 import AboutProduct from '@/components/sections/AboutProduct'
 import CertificateGallery from '@/components/sections/CertificateGallery'
 import Pricing from '@/components/sections/Pricing'
-import SocialProof from '@/components/sections/SocialProof'
 import CertificateAnatomy from '@/components/sections/CertificateAnatomy'
 import OrderForm from '@/components/sections/OrderForm'
 import Testimonials from '@/components/sections/Testimonials'
@@ -37,9 +36,6 @@ export default function Home() {
 
       {/* 5. Pricing */}
       <Pricing />
-
-      {/* 6. Social proof / stats */}
-      <SocialProof />
 
       {/* 7. Certificate anatomy */}
       <CertificateAnatomy />
