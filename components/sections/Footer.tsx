@@ -125,11 +125,11 @@ export default function Footer() {
           <p className="text-xs" style={{ color: '#4A4438', fontFamily: 'Georgia, serif' }}>
             © {year} Часовой Погоды. Все права защищены.
           </p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-6 gap-y-2">
             {[
-              ['#', 'Политика конфиденциальности'],
-              ['#', 'Пользовательское соглашение'],
-              ['#', 'Доставка и возврат'],
+              ['/privacy', 'Политика конфиденциальности'],
+              ['/consent', 'Согласие на обработку ПД'],
+              ['/agreement', 'Пользовательское соглашение'],
             ].map(([href, label]) => (
               <a
                 key={label}

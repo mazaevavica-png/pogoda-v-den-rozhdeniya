@@ -306,7 +306,7 @@ export default function OrderForm({ prefill }: OrderFormProps) {
 
               <p className="text-xs text-center" style={{ color: '#8B6948', fontFamily: 'Georgia, serif' }}>
                 Нажимая кнопку, вы соглашаетесь с{' '}
-                <a href="#" className="underline underline-offset-2 hover:text-gold-600 transition-colors">
+                <a href="/privacy" className="underline underline-offset-2 hover:text-gold-600 transition-colors">
                   политикой конфиденциальности
                 </a>.
                 Оплата после подтверждения заказа.
