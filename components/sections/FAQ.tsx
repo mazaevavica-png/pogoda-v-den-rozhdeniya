@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import OrnamentDivider from '../ui/OrnamentDivider'
-import { FAQ_ITEMS } from '@/lib/constants'
+import { FAQ_ITEMS, SITE_CONFIG } from '@/lib/constants'
 
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0)
@@ -69,7 +69,7 @@ export default function FAQ() {
           <p className="text-sm" style={{ color: '#7A5E16', fontFamily: 'Georgia, serif' }}>
             Не нашли ответ?{' '}
             <a
-              href="mailto:hello@chasovoy-pogody.ru"
+              href={`mailto:${SITE_CONFIG.email}`}
               className="underline underline-offset-2 hover:text-gold-600 transition-colors"
               style={{ color: '#B8922A' }}
             >

@@ -1,4 +1,5 @@
 import OrnamentDivider from '../ui/OrnamentDivider'
+import { SITE_CONFIG } from '@/lib/constants'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -28,26 +29,10 @@ export default function Footer() {
                 </p>
               </div>
             </div>
-            <p className="text-sm leading-relaxed mb-5 max-w-xs" style={{ color: '#787060', fontFamily: 'Georgia, serif' }}>
+            <p className="text-sm leading-relaxed max-w-xs" style={{ color: '#787060', fontFamily: 'Georgia, serif' }}>
               Персональные метеосертификаты в рамке из исторических архивов. Памятный подарок
               о погоде в самый важный день вашей жизни.
             </p>
-            <div className="flex items-center gap-4">
-              {['VK', 'TG', 'OK'].map((social) => (
-                <a
-                  key={social}
-                  href="#"
-                  className="w-8 h-8 flex items-center justify-center rounded-sm text-xs font-bold transition-all duration-200 hover:border-gold-500"
-                  style={{
-                    border: '1px solid rgba(184,146,42,0.25)',
-                    color: '#787060',
-                    fontFamily: 'Georgia, serif',
-                  }}
-                >
-                  {social}
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Navigation */}
@@ -85,20 +70,20 @@ export default function Footer() {
             <ul className="space-y-2.5">
               <li>
                 <a
-                  href="mailto:hello@chasovoy-pogody.ru"
+                  href={`mailto:${SITE_CONFIG.email}`}
                   className="text-sm transition-colors duration-200 hover:text-gold-400"
                   style={{ color: '#787060', fontFamily: 'Georgia, serif' }}
                 >
-                  hello@chasovoy-pogody.ru
+                  {SITE_CONFIG.email}
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+78005553535"
+                  href={`tel:${SITE_CONFIG.phoneTel}`}
                   className="text-sm transition-colors duration-200 hover:text-gold-400"
                   style={{ color: '#787060', fontFamily: 'Georgia, serif' }}
                 >
-                  +7 (800) 555-35-35
+                  {SITE_CONFIG.phone}
                 </a>
               </li>
               <li className="pt-2">
