@@ -5,6 +5,15 @@ export const metadata: Metadata = {
   title: 'Погода в День Рождения — Персональный метеосертификат в рамке',
   description:
     'Персональный сертификат о погоде в важный день — напечатан, оформлен в рамку и готов стать памятным подарком. Данные из исторических метеорологических архивов с 1936 года.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '16x16 32x32 48x48' },
+      { url: '/favicon.svg', type: 'image/svg+xml', sizes: 'any' },
+    ],
+    apple: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+  },
   keywords: [
     'погода в день рождения',
     'метеосертификат',
@@ -50,6 +59,8 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <head>
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
